@@ -1,0 +1,43 @@
+﻿@model TODO.Models.Task
+
+@{
+    ViewBag.Title = "Task Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-info text-white text-center">
+            <h3><i class="fas fa-info-circle"></i> Task Details</h3>
+        </div>
+        <div class="card-body">
+            <h4 class="mb-4">Task Information</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Title:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+                <dt class="col-sm-3">Description:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-3">Status:</dt>
+                <dd class="col-sm-9">
+                    @if (Model.IsCompleted)
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Not Completed</span>
+                    }
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a href="@Url.Action("Edit", "Tasks", new { id = Model.Id })" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit Task
+            </a>
+            <a href="@Url.Action("Index", "Tasks")" class="btn btn-outline-secondary ms-3">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>
